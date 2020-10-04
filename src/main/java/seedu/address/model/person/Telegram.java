@@ -40,7 +40,7 @@ public class Telegram {
 
     @Override
     public String toString() {
-        return telegram;
+        return "@" + telegram;
     }
 
     @Override
