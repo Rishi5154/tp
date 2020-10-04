@@ -11,7 +11,7 @@ public class MatricNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Matric numbers should only contain numbers, and it should be in the form A<7 digits><1 uppercase alphabet>.";
-    public static final String VALIDATION_REGEX = "\\d{3,}"; // TODO implement this
+    public static final String VALIDATION_REGEX = "^A\\d{7}[A-Z]$"; // TODO implement this
     public final String value;
 
     /**

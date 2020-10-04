@@ -15,7 +15,7 @@ public class Telegram {
     /*
      * TODO: update regex
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_-]{5,32}$";
 
     public final String telegram;
 
