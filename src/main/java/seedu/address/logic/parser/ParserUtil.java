@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +90,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String telegram} into an {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegram} is invalid.
+     */
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidTelegram(telegram)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(trimmedTelegram);
+    }
+
+    /**
+     * Parses a {@code String matricNumber} into an {@code MatricNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code matricNumber} is invalid.
+     */
+    public static MatricNumber parseMatricNumber(String matricNumber) throws ParseException {
+        requireNonNull(matricNumber);
+        String trimmedMatricNumber = matricNumber.trim();
+        if (!MatricNumber.isValidMatricNumber(trimmedMatricNumber)) {
+            throw new ParseException(MatricNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new MatricNumber(trimmedMatricNumber);
     }
 
     /**
