@@ -107,7 +107,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
-        System.out.println(telegram);
         final Telegram modelTelegram = new Telegram(telegram);
 
         if (matricNumber == null) {
