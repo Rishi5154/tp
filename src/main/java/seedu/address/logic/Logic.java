@@ -24,7 +24,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the Tasker.
+     * Returns the AddressBook.
      *
      * @see seedu.address.model.Model#getAddressBook()
      */

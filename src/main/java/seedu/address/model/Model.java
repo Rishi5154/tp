@@ -45,11 +45,11 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code tasker}.
+     * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook tasker);
+    void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the TAsker */
+    /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
     /**
