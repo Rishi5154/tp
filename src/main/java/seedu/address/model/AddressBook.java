@@ -12,7 +12,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class Tasker implements ReadOnlyAddressBook {
+public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
@@ -27,12 +27,12 @@ public class Tasker implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public Tasker() {}
+    public AddressBook() {}
 
     /**
-     * Creates an TAsker using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public Tasker(ReadOnlyAddressBook toBeCopied) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,7 +48,7 @@ public class Tasker implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code Tasker} with {@code newData}.
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
@@ -86,7 +86,7 @@ public class Tasker implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code Tasker}.
+     * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -109,8 +109,8 @@ public class Tasker implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Tasker // instanceof handles nulls
-                && persons.equals(((Tasker) other).persons));
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
     }
 
     @Override

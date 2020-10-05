@@ -22,25 +22,25 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class TaskerTest {
+public class AddressBookTest {
 
-    private final Tasker tasker = new Tasker();
+    private final AddressBook addressBook = new AddressBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), tasker.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tasker.resetData(null));
+        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Tasker newData = getTypicalAddressBook();
-        tasker.resetData(newData);
-        assertEquals(newData, tasker);
+        AddressBook newData = getTypicalAddressBook();
+        addressBook.resetData(newData);
+        assertEquals(newData, addressBook);
     }
 
     @Test
@@ -51,36 +51,36 @@ public class TaskerTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> tasker.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tasker.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(tasker.hasPerson(ALICE));
+        assertFalse(addressBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        tasker.addPerson(ALICE);
-        assertTrue(tasker.hasPerson(ALICE));
+        addressBook.addPerson(ALICE);
+        assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        tasker.addPerson(ALICE);
+        addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(tasker.hasPerson(editedAlice));
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> tasker.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
     /**

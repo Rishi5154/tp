@@ -2,17 +2,16 @@
 layout: page
 title: Developer Guide
 ---
+* Table of Contents
+{:toc}
 
-- Table of Contents
-  {:toc}
-
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
@@ -20,32 +19,31 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-
-- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-- [**`UI`**](#ui-component): The UI of the App.
-- [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
-- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
-- defines its _API_ in an `interface` with the same name as the Component.
-- exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* defines its *API* in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -53,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -64,23 +62,23 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-- Executes user commands using the `Logic` component.
-- Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -99,36 +97,37 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
-- stores a `UserPref` object that represents the user’s preferences.
-- stores the address book data.
-- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- does not depend on any of the other three components.
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Tasker`, which `Person` references. This allows `Tasker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
+
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-
-- can save `UserPref` objects in json format and read it back.
-- can save the address book data in json format and read it back.
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
@@ -138,11 +137,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Tasker` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -168,7 +167,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Tasker state, then there are no previous Tasker states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -183,7 +182,7 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone Tasker states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -203,15 +202,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-- **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -219,246 +217,92 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
----
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
 ### Product scope
 
-**Target user profile (user persona)**:
+**Target user profile**:
 
-<img width="400" src="https://qph.fs.quoracdn.net/main-qimg-99674b15041e648e58263efc5ec0dcdb" />
+* has a need to manage a significant number of contacts
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
 
-Name: Jane
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-Age: 19
-
-Undergraduate NUS CS Student, and a part-time teaching assistant
-
-- is a teaching assistant for CS modules
-- is busy because she is a overachieving student with lots of modules
-- needs to take attendance
-- needs to keep track of student’s assignments and their submission status
-- prefer desktop apps over other types
-- can type fast
-- codes a lot, so she prefers keyboard-based interfaces
-
-**Value proposition**: TAs can track students' details and submissions in a efficient and structured manner
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                                            | So that I can…​                                                            |
-| -------- | -------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `* * *`  | user     | CRUD student details into my data                                       | add/remove my students data when they join/drop the module                 |
-| `* * *`  | user     | CRUD my students’ attendance                                            |                                                                            |
-| `* * *`  | user     | CRUD my students’ assignments & status                                  | keep track of my students’ assignment’s submission status                  |
-| `* *`    | user     | CRUD my student’s consultation requests                                 | keep track of my students’ consultation requests                           |
-| `* *`    | user     | view all my upcoming consultations for the week, in chronological order | keep track of when my consultations are supposed to happen                 |
-| `* *`    | user     | mark when I end each of my consultations                                | keep track of the time elapsed of each consultation session                |
-| `*`      | user     | generate a summary of my weekly consultation hours                      | keep track of the total amount of consultation time, for claiming purposes |
-| `*`      | new user | see usage instructions                                                  | refer to instructions when I forget how to use the App                     |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
-_{More to be added}_
+*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is `TAsker` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all students**
+**Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list students
-2.  TAsker shows a list of students
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+* 2a. The list is empty.
 
   Use case ends.
 
-**Use case: Add a student**
+* 3a. The given index is invalid.
 
-**MSS**
+    * 3a1. AddressBook shows an error message.
 
-1.  User requests to list students
-2.  TAsker shows a list of students
-3.  User requests to add a specific student to the list
-4.  TAsker adds the student to the list
+      Use case resumes at step 2.
 
-    Use case ends.
-
-**Extensions**
-
-- 2a. The student's details are insufficient/cannot be parsed.
-
-  - 2a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Delete a student**
-
-**MSS**
-
-1.  User requests to list students
-2.  TAsker shows a list of students
-3.  User requests to delete a specific student in the list
-4.  TAsker deletes the student
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Update a student's details**
-
-**MSS**
-
-1.  User requests to list students
-2.  TAsker shows a list of students
-3.  User requests to update a specific student's details in the list
-4.  TAsker updates the student's details
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given index is invalid.
-
-  - 2a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-- 3a. The student's details are insufficient/cannot be parsed.
-
-  - 3a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: See all assignment statuses**
-
-**MSS**
-
-1.  User requests to list students
-1.  TAsker shows a list of students, with their assignment statuses
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. No assignments are added.
-
-  - 2a1. TAsker will just show the student's information
-
-    Use case resumes at step 2.
-
-**Use case: Add an assignment**
-
-**MSS**
-
-1.  User requests to add a assignment to the list
-1.  TAsker adds the assignment to the list
-
-    Use case ends.
-
-**Use case: Delete an assignment**
-
-**MSS**
-
-1.  User requests to list students
-1.  TAsker shows a list of students, with their assignment statuses
-1.  User requests to delete an assignment from the list
-1.  TAsker deletes the assignment from the list
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given assignment is invalid.
-
-  - 2a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Update a student's assignment submission status**
-
-**MSS**
-
-1.  User requests to list students
-2.  TAsker shows a list of students, along with their assignment statuses
-3.  User requests to update a specific student's assignment submission status
-4.  TAsker updates the specific student's assignment submission status
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given index is invalid.
-
-  - 2a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-- 3a. The given assignment is invalid.
-
-  - 3a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-- 4a. The given assignment status is invalid.
-
-  - 4a1. TAsker shows an error message.
-
-    Use case resumes at step 2.
-
-_{More to be added}_
+*{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should be able to work offline, without any internet connection requirement.
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above
-    installed.
-1.  Should be able to hold up to 1000 persons without a noticeable sluggishness
-    in performance for typical usage.
-1.  Should not be too bright or even have a dark mode, at night timings.
-1.  A user with above average typing speed for regular English text (i.e. not code,
-    not system admin commands) should be able to accomplish most of the tasks faster
-    using commands than using the mouse.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-_{More to be added}_
+*{More to be added}*
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, macOS
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **TA**: Teaching Assistant
-- **CS**: Computer Science
-- **CRUD**: Create, Read, Update, Delete
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Private contact detail**: A contact detail that is not meant to be shared with others
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -482,7 +326,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

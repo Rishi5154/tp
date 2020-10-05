@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of TAsker data in local storage.
+ * Manages storage of AddressBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ TAsker methods ==============================
+    // ================ AddressBook methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook tasker) throws IOException {
-        saveAddressBook(tasker, addressBookStorage.getAddressBookFilePath());
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook tasker, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(tasker, filePath);
+        addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
 }
