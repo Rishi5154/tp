@@ -58,7 +58,9 @@ public class Person {
         return email;
     }
 
-    public Telegram getTelegram() { return telegram; }
+    public Telegram getTelegram() {
+        return telegram;
+    }
 
     public MatricNumber getMatricNumber() {
         return matricNumber;
