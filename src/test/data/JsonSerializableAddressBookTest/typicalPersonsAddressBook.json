@@ -7,7 +7,6 @@
       "email": "alice@example.com",
       "telegram": "alice_p",
       "matricNumber": "A1234567B",
-      "address": "123, Jurong West Ave 6, #08-111",
       "tagged": ["friends"]
     },
     {
@@ -16,7 +15,6 @@
       "email": "johnd@example.com",
       "telegram": "bm_99",
       "matricNumber": "A3256548H",
-      "address": "311, Clementi Ave 2, #02-25",
       "tagged": ["owesMoney", "friends"]
     },
     {
@@ -25,7 +23,6 @@
       "email": "heinz@example.com",
       "telegram": "cKurzzz",
       "matricNumber": "A9876543D",
-      "address": "wall street",
       "tagged": []
     },
     {
@@ -34,7 +31,6 @@
       "email": "cornelia@example.com",
       "telegram": "12345",
       "matricNumber": "A1010101B",
-      "address": "10th street",
       "tagged": ["friends"]
     },
     {
@@ -43,7 +39,6 @@
       "email": "werner@example.com",
       "telegram": "ElleMeyer",
       "matricNumber": "A9999999F",
-      "address": "michegan ave",
       "tagged": []
     },
     {
@@ -52,7 +47,6 @@
       "email": "lydia@example.com",
       "telegram": "Fiona_Kunz_",
       "matricNumber": "A5763762P",
-      "address": "little tokyo",
       "tagged": []
     },
     {
@@ -61,7 +55,6 @@
       "email": "anna@example.com",
       "telegram": "_gbest",
       "matricNumber": "A6372632E",
-      "address": "4th street",
       "tagged": []
     }
   ]

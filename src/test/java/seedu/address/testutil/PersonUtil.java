@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -37,7 +36,6 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().telegram + " ");
         sb.append(PREFIX_MATRIC_NUMBER + person.getMatricNumber().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -56,7 +54,6 @@ public class PersonUtil {
                 .append(" "));
         descriptor.getMatricNumber().ifPresent(matricNumber -> sb.append(PREFIX_MATRIC_NUMBER)
                 .append(matricNumber.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

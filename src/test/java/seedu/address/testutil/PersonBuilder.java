@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatricNumber;
 import seedu.address.model.person.Name;
@@ -23,14 +22,12 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_TELEGRAM = "alice";
     public static final String DEFAULT_MATRIC_NUMBER = "A1234567H";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Telegram telegram;
     private MatricNumber matricNumber;
-    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -42,7 +39,6 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         telegram = new Telegram(DEFAULT_TELEGRAM);
         matricNumber = new MatricNumber(DEFAULT_MATRIC_NUMBER);
-        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -55,7 +51,6 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         telegram = personToCopy.getTelegram();
         matricNumber = personToCopy.getMatricNumber();
-        address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -100,14 +95,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
@@ -116,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, telegram, matricNumber, address, tags);
+        return new Person(name, phone, email, telegram, matricNumber, tags);
     }
 
 }
