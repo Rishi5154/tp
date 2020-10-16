@@ -23,7 +23,6 @@ public class Person {
     private final MatricNumber matricNumber;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,18 +33,15 @@ public class Person {
                   Email email,
                   Telegram telegram,
                   MatricNumber matricNumber,
-                  Address address,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.telegram = telegram;
         this.matricNumber = matricNumber;
-        this.address = address;
         this.tags.addAll(tags);
     }
-
     public Name getName() {
         return name;
     }
@@ -64,10 +60,6 @@ public class Person {
 
     public MatricNumber getMatricNumber() {
         return matricNumber;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -112,14 +104,13 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getMatricNumber().equals(getMatricNumber())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, telegram, matricNumber, address, tags);
+        return Objects.hash(name, phone, email, telegram, matricNumber, tags);
     }
 
     @Override
@@ -134,8 +125,6 @@ public class Person {
                 .append(getTelegram())
                 .append(" Matric Number: ")
                 .append(getMatricNumber())
-                .append(" Address: ")
-                .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
