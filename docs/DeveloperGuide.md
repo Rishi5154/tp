@@ -134,6 +134,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View all student data
+
+Querying the data of all current students in TAsker is really simple. Once the `list` command is inputted, the name,
+phone number, telegram tag, matric number, email, tutorial classes and attendance record of all students are displayed
+on TAsker's GUI.
+
+#### Sequence of action 
+
+1. `LogicManager` processes the user input "list".
+2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which returns a new
+  `ListCommand` object
+3. Our new `ListCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
+4. Within the `ListCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
+   the list to show all persons.
+5. Lastly, a new `CommandResult` with the relevant success message is finally returned to `LogicManager`.   
+
+All of these details and interactions are captured in the sequence diagram below.
+
+![ListStudentSequenceDiagram](images/ListStudentSequenceDiagram.png)
+
+### Find a student's data
+
+Querying the data of a specific student in TAsker is just as simple as finding all. Once the `find <NAME>` command 
+is inputted, the name,
+phone number, telegram tag, matric number, email, tutorial classes and attendance record of the specific student 
+is displayed on TAsker's GUI.
+
+#### Sequence of action 
+
+1. `LogicManager` processes the user input "find Roy", for example.
+2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which in turns creates a 
+ new `FindCommandParser` object
+3. The `FindCommandParser` object calls its own `parse` method with the `" Roy"` as input.
+4. Now, the `" Roy"` argument is broken down into its individual strings, with whitespace removed and into an array, 
+   which is processed and used as predicate for filtering out the desired student.
+5. Within the `ListCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
+   the list to show all persons.
+6. Our new `ListCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
+7. Lastly, a new `CommandResult` with the relevant message is finally returned to `LogicManager`.   
+
+All of these details and interactions are captured in the sequence diagram below.
+
+![ListStudentSequenceDiagram](images/FindStudentSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
