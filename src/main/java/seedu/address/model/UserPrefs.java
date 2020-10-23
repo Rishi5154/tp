@@ -26,6 +26,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      */
     public UserPrefs(ReadOnlyUserPrefs userPrefs) {
         this();
+        assert userPrefs != null;
         resetData(userPrefs);
     }
 
