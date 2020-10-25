@@ -61,6 +61,7 @@ public class AttendCommand extends Command {
         Person personToAttend = lastShownList.get(targetIndex.getZeroBased());
         Person attendedPerson = updateAttendanceForPerson(personToAttend, attendance);
         model.setPerson(personToAttend, attendedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ATTEND_SUCCESS, personToAttend));
     }
