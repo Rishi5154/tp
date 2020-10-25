@@ -23,7 +23,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private Path filePath;
 
+    /**
+     * Class constructor
+     * @param filePath Path of file intialised
+     */
     public JsonAddressBookStorage(Path filePath) {
+        assert filePath != null;
         this.filePath = filePath;
     }
 

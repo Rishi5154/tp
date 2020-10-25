@@ -176,7 +176,7 @@ TAsker data are saved in the hard disk automatically after any command that chan
 
 Creates a copy of all current data, tagged with the current date and time.
 
-e.g. running this command will create a file called `tasker_2020-09-13_10:41` containing all your saved data, in your `/data` folder.
+e.g. running this command will create a file called `tasker_2020-09-13_1041` containing all your saved data, in your `/data` folder.
 
 Format: `archive`
 

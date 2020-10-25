@@ -25,6 +25,7 @@ public class StorageManager implements Storage {
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
+        assert addressBookStorage != null && userPrefsStorage != null;
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

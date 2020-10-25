@@ -31,9 +31,9 @@ public class ArchiveCommand extends Command {
         // get current date & time
         LocalDateTime time = LocalDateTime.now();
         LocalDate currentDate = time.toLocalDate();
-        String currentTime = time.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String currentTime = time.format(DateTimeFormatter.ofPattern("HHmm"));
         // archive file path
-        Path filePath = Paths.get(String.format("data/tasker_%s_%s", currentDate, currentTime));
+        Path filePath = Paths.get(String.format("data/tasker_%s_%s.json", currentDate, currentTime));
         // initialise new TAsker storage
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(filePath);
         ReadOnlyAddressBook addressBookToArchive = model.getAddressBook();
