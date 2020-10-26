@@ -150,17 +150,17 @@ Shows the attendance for tutorial on all dates / a specified date.
 
 Format: `showatt [INDEX] [d/DATE]`
 
-### Marking Attendance [coming soon] : `attend`
+### Marking Attendance : `attend`
 
 Marks the student as present for tutorial on a specified date.
 
 Format: `attend [INDEX] d/DATE`
 
-### Unmarking Attendance [coming soon] : `unattend`
+### Unmarking Attendance : `unattend`
 
 Marks the student as absent (default) for tutorial on a specified date.
 
-Format: `unattend INDEX d/DATE`
+Format: `unattend [INDEX] d/DATE`
 
 ### Exiting the program : `exit`
 
@@ -221,7 +221,7 @@ Format: `archive`
 | **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                 |
 | **Show Attendance**      | `showatt [INDEX] [d/DATE]`                                                                                                                                                                                                 |
 | **Marking Attendance**   | `attend [INDEX] d/DATE`                                                                                                                                                                                                    |
-| **Unmarking Attendance** | `unattend INDEX d/DATE`                                                                                                                                                                                                    |
+| **Unmarking Attendance** | `unattend [INDEX] d/DATE`                                                                                                                                                                                                    |
 | **Archive**              | `archive`                                                                                                                                                                                                                  |
 | **List**                 | `list`                                                                                                                                                                                                                     |
 | **Help**                 | `help`                                                                                                                                                                                                                     |
