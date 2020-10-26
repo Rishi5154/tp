@@ -11,8 +11,8 @@ import seedu.address.model.attendance.Attendance;
 
 public class UnattendCommandParser implements Parser<UnattendCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AttendCommand
-     * and returns a AttendCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnattendCommand
+     * and returns a UnattendCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnattendCommand parse(String args) throws ParseException {
