@@ -16,5 +16,7 @@
       "matricNumber": "A1234568H",
       "address": "4th street"
     }
+  ],
+  "consults" : [
   ]
 }
