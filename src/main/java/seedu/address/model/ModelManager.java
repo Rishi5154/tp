@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final Tasker tasker;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Consultation> filteredConsults;
 
     /**
      * Initializes a ModelManager with the given tasker and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.tasker = new Tasker(tasker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.tasker.getPersonList());
+        filteredConsults = new FilteredList<>(this.tasker.getConsultationList());
     }
 
     public ModelManager() {
@@ -87,7 +90,7 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return tasker;
     }
-
+    //---------- Student-related operations -------------------------------------------------------------
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -111,7 +114,31 @@ public class ModelManager implements Model {
 
         tasker.setPerson(target, editedPerson);
     }
+    //---------- Consultation-related operations -------------------------------------------------------------
 
+    @Override
+    public boolean hasConsult(Consultation consultation) {
+        requireNonNull(consultation);
+        return tasker.hasConsultation(consultation);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        tasker.addConsultation(consultation);
+        updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
+    }
+
+    @Override
+    public void deleteConsultation(Consultation target) {
+        tasker.removeConsultation(target);
+    }
+
+    @Override
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+
+        tasker.setConsult(target, editedConsultation);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -128,7 +155,22 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    //=========== Filtered Consult List Accessors =============================================================
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Consultation> getFilteredConsultList() {
+        return filteredConsults;
+    }
+
+    @Override
+    public void updateFilteredConsultList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsults.setPredicate(predicate);
+    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -145,7 +187,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tasker.equals(other.tasker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredConsults.equals(other.filteredConsults);
     }
 
 }
