@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.Tasker;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.Day;
+import seedu.address.model.consultation.Time;
+import seedu.address.model.consultation.Type;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatricNumber;
 import seedu.address.model.person.Name;
@@ -56,10 +61,24 @@ public class SampleDataUtil {
         };
     }
 
+    public static Consultation[] getSampleConsultations() {
+        return new Consultation[] {
+            new Consultation(new Name("Alex Yeoh"), Day.fromDateString("24/10/2020"), Time.fromTimeString("18:00"),
+                    new Address("SOC Basement"),
+                    new Type("personal")),
+            new Consultation(new Name("Alex Yeoh"), Day.fromDateString("21/10/2020"), Time.fromTimeString("10:00"),
+                    new Address("SOC Basement 3"),
+                    new Type("group"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         Tasker sampleAb = new Tasker();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Consultation sampleConsultation: getSampleConsultations()) {
+            sampleAb.addConsultation(sampleConsultation);
         }
         return sampleAb;
     }
