@@ -47,7 +47,6 @@ public class JsonAdaptedConsultation {
         time = source.getTime().toString();
         location = source.getLocation().value;
         type = source.getType().type.toString();
-        System.out.println(name + " " + date + " " + time + " " + location + " " + type);
     }
 
     /**

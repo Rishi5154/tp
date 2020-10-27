@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -43,6 +45,15 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ATTENDANCE_AMY = "27/03/1998";
     public static final String VALID_ATTENDANCE_BOB = "27/05/2020";
+    public static final String VALID_DAY_AMY = "20/03/2019";
+    public static final String VALID_DAY_BOB = "27/05/2020";
+    public static final String VALID_TIME_AMY = "12:00";
+    public static final String VALID_TIME_BOB = "11:00";
+    public static final String VALID_LOCATION_AMY = "NUS Utown";
+    public static final String VALID_LOCATION_BOB = "SOC Basement";
+    public static final String VALID_TYPE_AMY = "personal";
+    public static final String VALID_TYPE_BOB = "group";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,6 +69,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_DATE + VALID_ATTENDANCE_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_DATE + VALID_ATTENDANCE_BOB;
+    public static final String DAY_DESC_AMY = " " + PREFIX_DATE + VALID_DAY_AMY;
+    public static final String DAY_DESC_BOB = " " + PREFIX_DATE + VALID_DAY_BOB;
+    public static final String TIME_DESC_AMY = " " + PREFIX_TIME + VALID_TIME_AMY;
+    public static final String TIME_DESC_BOB = " " + PREFIX_TIME + VALID_TIME_BOB;
+    public static final String LOCATION_DESC_AMY = " " + PREFIX_ADDRESS + VALID_LOCATION_AMY;
+    public static final String LOCATION_DESC_BOB = " " + PREFIX_ADDRESS + VALID_LOCATION_BOB;
+    public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
+    public static final String TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_TYPE_BOB;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
@@ -75,6 +94,12 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*";
     // invalid attendance date
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_DATE + "mar 27";
+    // invalid time
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "25:00";
+    // invalid type
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE + "one-to-one";
+    // invalid consult day
+    public static final String INVALID_DAY_DESC = " " + PREFIX_DATE + "apr 27";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
