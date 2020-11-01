@@ -121,6 +121,7 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a student : `delete`
