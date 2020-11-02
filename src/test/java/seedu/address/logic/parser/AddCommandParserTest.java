@@ -55,19 +55,9 @@ public class AddCommandParserTest {
                 + TELEGRAM_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + TELEGRAM_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
-
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TELEGRAM_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + TELEGRAM_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
+        // single tag - all accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
+                        + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted

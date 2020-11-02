@@ -39,9 +39,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM,
                         PREFIX_MATRIC_NUMBER, PREFIX_TAG);
+        // all argument checks
+        boolean areAllPrefixesPresent = arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MATRIC_NUMBER);
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+        boolean areDuplicatePrefixesPresent = checkDuplicatePrefixes(argMultimap);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM,
-                PREFIX_MATRIC_NUMBER) || !argMultimap.getPreamble().isEmpty()) {
+        if (!areAllPrefixesPresent || !isPreambleEmpty || areDuplicatePrefixesPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -67,6 +71,15 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if there are duplicate prefixes(except for tag) in the given {@code ArgumentMultimap}.
+     */
+    private static boolean checkDuplicatePrefixes(ArgumentMultimap argumentMultimaps) {
+        Stream<Prefix> prefixes = Stream.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM,
+                PREFIX_MATRIC_NUMBER);
+        return prefixes.anyMatch(prefix -> argumentMultimaps.getAllValues(prefix).size() > 1);
     }
 
 }
