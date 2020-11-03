@@ -25,7 +25,7 @@ public class Type {
      * Returns true if a given string is a valid type.
      */
     public static boolean isValidType(String test) {
-        return test.equals(GROUP.toString()) || test.equals(PERSONAL.toString());
+        return test.equalsIgnoreCase(GROUP.toString()) || test.equalsIgnoreCase(PERSONAL.toString());
     }
 
     /**
@@ -33,7 +33,7 @@ public class Type {
      * @return ConsultationType
      */
     public static ConsultationType assignType(String test) {
-        return test.equals(GROUP.toString()) ? GROUP : PERSONAL;
+        return test.equalsIgnoreCase(GROUP.toString()) ? GROUP : PERSONAL;
     }
 
 

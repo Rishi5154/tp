@@ -4,13 +4,13 @@ public enum ConsultationType {
     PERSONAL {
         @Override
         public String toString() {
-            return "personal";
+            return "Personal";
         }
     },
     GROUP {
         @Override
         public String toString() {
-            return "group";
+            return "Group";
         }
     };
 }

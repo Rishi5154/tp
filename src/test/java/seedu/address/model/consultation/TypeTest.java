@@ -16,7 +16,7 @@ public class TypeTest {
         assertThrows(IllegalArgumentException.class, () -> new Type("hello"));
 
         // valid attendances
-        assertEquals(new Type("personal").toString(), "personal");
-        assertEquals(new Type("group").toString(), "group");
+        assertEquals(new Type("personal").toString(), "Personal");
+        assertEquals(new Type("group").toString(), "Group");
     }
 }
