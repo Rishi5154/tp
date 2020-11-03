@@ -119,6 +119,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         attendanceTablePanel = new AttendanceTablePanel(logic.getFilteredPersonList());
         attendanceTablePanelPlaceholder.getChildren().add(attendanceTablePanel.getRoot());
+        consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
+        consultationListPanelPlaceHolder.getChildren().add(consultationListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

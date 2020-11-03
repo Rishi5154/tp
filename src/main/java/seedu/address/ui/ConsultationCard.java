@@ -30,7 +30,7 @@ public class ConsultationCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
-    private Label location;
+    private Label address;
     @FXML
     private Label type;
 
@@ -45,7 +45,7 @@ public class ConsultationCard extends UiPart<Region> {
         name.setText(consultation.getName().fullName);
         date.setText(consultation.getDate().toString());
         time.setText(consultation.getTime().toString());
-        location.setText(consultation.getLocation().value);
+        address.setText(consultation.getLocation().value);
         type.setText(consultation.getType().toString());
     }
 
