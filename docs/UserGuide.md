@@ -200,11 +200,11 @@ Format: `unattend INDEX d/DATE`
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
-### Adding a consultation: `add`
+### Adding a consultation: `add-consult`
 
 Adds a consultation to the address book.
 
-Format: `add n/NAME d/DATE tm/TIME a/LOCATION ty/TYPE`
+Format: `add-consult n/NAME d/DATE tm/TIME a/LOCATION ty/TYPE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 There are only **2 types** of consultations, Personal or Group. They can inputted in any case too!
@@ -214,6 +214,12 @@ Examples:
 
 - `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`
 - `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `
+
+### Listing all consultations: `list-consult`
+
+Shows a list of all consultations in charge by the TA.
+
+Format: `list-consult`
 
 ### Exiting the program : `exit`
 
@@ -283,7 +289,9 @@ Format: `exportatt`
 | **Show Attendance**      | `showatt INDEX d/DATE`                                                                                                                                                                                                     |
 | **Marking Attendance**   | `attend INDEX d/DATE`                                                                                                                                                                                                      |
 | **Unmarking Attendance** | `unattend INDEX d/DATE`                                                                                                                                                                                                    |
+| **Add Consultation**     | `add-consult n/NAME d/DATE tm/TIME a/LOCATION ty/TYPE`                                                                                                                                                                     |
 | **Archive**              | `archive`                                                                                                                                                                                                                  |
 | **List**                 | `list`                                                                                                                                                                                                                     |
+| **List Consultation**    | `list-consult`                                                                                                                                                                                                             |
 | **Help**                 | `help`                                                                                                                                                                                                                     |
 | **Exit**                 | `exit`                                                                                                                                                                                                                     |
