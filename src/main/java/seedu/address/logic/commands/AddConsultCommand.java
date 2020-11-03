@@ -20,7 +20,7 @@ public class AddConsultCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
             + PREFIX_ADDRESS + "LOCATION "
-            + "[" + PREFIX_TYPE + "TYPE]...\n"
+            + PREFIX_TYPE + "TYPE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DATE + "10/10/2020 "
