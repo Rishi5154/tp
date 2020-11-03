@@ -67,7 +67,7 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to the address book. 
+Adds a student to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​`
 
