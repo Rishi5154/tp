@@ -7,6 +7,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+/**
+ * Represents a Consultation's time in classes.
+ * Guarantees: Immutable
+ */
 public class Time implements Comparable<Time> {
 
     public static final String MESSAGE_CONSTRAINTS = "Accepted time format: hh:mm (e.g. 08:30)";
@@ -15,9 +19,9 @@ public class Time implements Comparable<Time> {
 
     /**
      * Users should only use fromDateString to safely generate the time of consultation
-     * @param time
+     * @param time Input time.
      */
-    public Time(LocalTime time) {
+    private Time(LocalTime time) {
         assert time != null;
         this.time = time;
     }
@@ -25,8 +29,8 @@ public class Time implements Comparable<Time> {
     /**
      * Creates a new {@code Time} using a time string that will be parsed.
      *
-     * @param input time string in hh:mm
-     * @return {@code Time} that corresponds to the input time
+     * @param input time string in hh:mm.
+     * @return {@code Time} that corresponds to the input time.
      */
     public static final Time fromTimeString(String input) {
         requireNonNull(input);
@@ -41,6 +45,9 @@ public class Time implements Comparable<Time> {
     }
     /**
      * Returns true if a given time is a valid time.
+     *
+     * @param test Input time.
+     * @return Presence of valid time.
      */
     public static boolean isValidTime(String test) {
         try {
@@ -51,6 +58,11 @@ public class Time implements Comparable<Time> {
         return true;
     }
 
+    /**
+     * Returns string representation of the time.
+     *
+     * @return time in string.
+     */
     @Override
     public String toString() {
         return time.toString();

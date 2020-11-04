@@ -20,7 +20,14 @@ public class Consultation {
     private final Type type;
 
     /**
+     * Class constructor for a consultation object.
      * Every field must be present and not null.
+     *
+     * @param name name of person consulting.
+     * @param date date of consultation.
+     * @param time time of consultation.
+     * @param location location of consultation.
+     * @param type type of consultation.
      */
     public Consultation(Name name, Day date, Time time, Address location, Type type) {
         requireAllNonNull(name, date, time, location, type);
@@ -51,6 +58,9 @@ public class Consultation {
     /**
      * Returns true if both consultation of the same date, time have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two consultations.
+     *
+     * @param consultation Consultation object being checked.
+     * @return Presence of same consultation.
      */
     public boolean isSameConsultation(Consultation consultation) {
         if (consultation == this) {
@@ -66,6 +76,9 @@ public class Consultation {
     /**
      * Returns true if both consultation have the same data fields.
      * This defines a stronger notion of equality between two persons.
+     *
+     * @param other object for comparison.
+     * @return Presence of whether the consultations have same fields.
      */
     @Override
     public boolean equals(Object other) {

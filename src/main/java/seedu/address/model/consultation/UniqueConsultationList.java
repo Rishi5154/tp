@@ -25,28 +25,34 @@ import seedu.address.model.consultation.exceptions.DuplicateConsultationExceptio
  * @see Consultation#isSameConsultation(Consultation)
  */
 public class UniqueConsultationList implements Iterable<Consultation> {
-    private final ObservableList<Consultation> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Consultation> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Consultation> internalConsults = FXCollections.observableArrayList();
+    private final ObservableList<Consultation> internalUnmodifiableConsults =
+            FXCollections.unmodifiableObservableList(internalConsults);
 
     /**
      * Returns true if the list contains an equivalent consultation as the given argument.
+     *
+     * @param toCheck the consultation being checked.
+     * @return Presence of consultation in current list.
      */
     public boolean contains(Consultation toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameConsultation);
+        return internalConsults.stream().anyMatch(toCheck::isSameConsultation);
     }
 
     /**
      * Adds a consultation to the list.
      * The consultation must not already exist in the list.
+     *
+     * @param toAdd Consultation to add to the list.
+     * @throws DuplicateConsultationException If consultation was already present.
      */
     public void add(Consultation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateConsultationException();
         }
-        internalList.add(toAdd);
+        internalConsults.add(toAdd);
     }
 
     /**
@@ -54,11 +60,16 @@ public class UniqueConsultationList implements Iterable<Consultation> {
      * {@code target} must exist in the list.
      * The consultation identity of {@code editedConsultation} must not be the same as
      * another existing consultation in the list.
+     *
+     * @param target Consultation set to be replaced.
+     * @param editedConsultation Replacement for the targeted consultation.
+     * @throws ConsultationNotFoundException If targeted consultation is missing.
+     * @throws DuplicateConsultationException If replacement consultation was merely a duplicate in list.
      */
     public void setConsultation(Consultation target, Consultation editedConsultation) {
         requireAllNonNull(target, editedConsultation);
 
-        int index = internalList.indexOf(target);
+        int index = internalConsults.indexOf(target);
         if (index == -1) {
             throw new ConsultationNotFoundException();
         }
@@ -67,17 +78,25 @@ public class UniqueConsultationList implements Iterable<Consultation> {
             throw new DuplicateConsultationException();
         }
 
-        internalList.set(index, editedConsultation);
-    }
-
-    public void setConsultations(UniqueConsultationList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalConsults.set(index, editedConsultation);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces all the consultations in the current list with the ones from the given {@code UniqueConsultationList}.
+     *
+     * @param replacement Replacement unique consultation list.
+     */
+    public void setConsultations(UniqueConsultationList replacement) {
+        requireNonNull(replacement);
+        internalConsults.setAll(replacement.internalConsults);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code consultations}.
+     * {@code consultations} must not contain duplicate consultations.
+     *
+     * @param consultations Replacement list of consultations.
+     * @throws DuplicateConsultationException If there are duplicates from the given list.
      */
     public void setConsultations(List<Consultation> consultations) {
         requireAllNonNull(consultations);
@@ -85,46 +104,54 @@ public class UniqueConsultationList implements Iterable<Consultation> {
             throw new DuplicateConsultationException();
         }
 
-        internalList.setAll(consultations);
+        internalConsults.setAll(consultations);
     }
 
     /**
      * Removes the equivalent consultation from the list.
      * The consultation must exist in the list.
+     *
+     * @param toRemove Consultation to remove from the list.
+     * @throws ConsultationNotFoundException If consultation is not found in the list.
      */
     public void remove(Consultation toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!internalConsults.remove(toRemove)) {
             throw new ConsultationNotFoundException();
         }
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return ObservableList of consultations.
      */
     public ObservableList<Consultation> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return internalUnmodifiableConsults;
     }
 
     @Override
     public Iterator<Consultation> iterator() {
-        return internalList.iterator();
+        return internalConsults.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueConsultationList // instanceof handles nulls
-                && internalList.equals(((UniqueConsultationList) other).internalList));
+                && internalConsults.equals(((UniqueConsultationList) other).internalConsults));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return internalConsults.hashCode();
     }
 
     /**
      * Returns true if {@code consultations} contains only unique consultations.
+     *
+     * @param consultations List of consultations.
+     * @return Confirmation of all consults being unique.
      */
     private boolean consultsAreUnique(List<Consultation> consultations) {
         for (int i = 0; i < consultations.size() - 1; i++) {

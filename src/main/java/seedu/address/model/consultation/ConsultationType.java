@@ -1,5 +1,8 @@
 package seedu.address.model.consultation;
 
+/**
+ * Represents the type of consultations in classes.
+ */
 public enum ConsultationType {
     PERSONAL {
         @Override

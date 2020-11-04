@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.consultation.ConsultationType.GROUP;
 import static seedu.address.model.consultation.ConsultationType.PERSONAL;
 
+/**
+ * Represents the type of consultation in classes.
+ */
 public class Type {
     public static final String MESSAGE_CONSTRAINTS = "Accepted consultation type format: personal/group";
 
@@ -22,7 +25,10 @@ public class Type {
     }
 
     /**
-     * Returns true if a given string is a valid type.
+     * Returns true if a given string is a valid consultation type.
+     *
+     * @param test Input type.
+     * @return confirmation of valid type.
      */
     public static boolean isValidType(String test) {
         return test.equalsIgnoreCase(GROUP.toString()) || test.equalsIgnoreCase(PERSONAL.toString());
@@ -30,13 +36,19 @@ public class Type {
 
     /**
      * Assigns a ConsultationType to the input.
-     * @return ConsultationType
+     *
+     * @param test Input type.
+     * @return ConsultationType of input.
      */
     public static ConsultationType assignType(String test) {
         return test.equalsIgnoreCase(GROUP.toString()) ? GROUP : PERSONAL;
     }
 
-
+    /**
+     * Returns string representation of the consultation type..
+     *
+     * @return type in string.
+     */
     @Override
     public String toString() {
         return type.toString();

@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.Objects;
 
 
-
+/**
+ * Represents a Consultation's date in classes.
+ */
 public class Day implements Comparable<Day> {
     public static final String MESSAGE_CONSTRAINTS = "Accepted date format: dd/MM/yyyy (e.g. 27/03/1998)";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
@@ -18,7 +20,7 @@ public class Day implements Comparable<Day> {
 
     /**
      * Users should only use fromDateString to safely generate the day of consultation
-     * @param date
+     * @param date Date.
      */
     private Day(Date date) {
         assert date != null;
@@ -28,8 +30,8 @@ public class Day implements Comparable<Day> {
     /**
      * Creates a new {@code Day} using a date string that will be parsed.
      *
-     * @param input date string in dd/MM/yyyy
-     * @return {@code Day} that corresponds to the input date
+     * @param input date string in dd/MM/yyyy.
+     * @return {@code Day} that corresponds to the input date.
      */
     public static final Day fromDateString(String input) {
         requireNonNull(input);
@@ -45,6 +47,9 @@ public class Day implements Comparable<Day> {
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * @param test Input date.
+     * @return Presence of valid day.
      */
     public static boolean isValidDay(String test) {
         try {
@@ -55,7 +60,11 @@ public class Day implements Comparable<Day> {
         return true;
     }
 
-
+    /**
+     * Returns string representation of the date.
+     *
+     * @return date in string.
+     */
     @Override
     public String toString() {
         return DATE_FORMAT.format(date);
