@@ -11,6 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.consultation.Consultation;
 
+/**
+ * Represents the command that is used to list all consultations, in classes.
+ */
 public class AddConsultCommand extends Command {
     public static final String COMMAND_WORD = "add-consult";
 
@@ -34,7 +37,9 @@ public class AddConsultCommand extends Command {
     private final Consultation toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddConsultCommand to add the specified {@code Consultation}.
+     *
+     * @param consultation Consultation(s) being called.
      */
     public AddConsultCommand(Consultation consultation) {
         requireNonNull(consultation);

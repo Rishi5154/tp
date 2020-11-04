@@ -16,7 +16,9 @@ import seedu.address.model.attendance.Attendance;
 import seedu.address.model.person.Person;
 
 
-
+/**
+ * Unattends(Unmarks) a person's attendance.
+ */
 public class UnattendCommand extends Command {
     public static final String COMMAND_WORD = "unattend";
 
@@ -34,9 +36,10 @@ public class UnattendCommand extends Command {
     private final Attendance attendance;
 
     /**
-     * Creates an {@code Attend} with corresponding target index and {@code Attendance}.
-     * @param targetIndex of the person in the filtered person list to edit
-     * @param attendance {@code Attendance}
+     * Creates an {@code Unattend} with corresponding target index and {@code Attendance}.
+     *
+     * @param targetIndex of the person in the filtered person list to edit attendance.
+     * @param attendance {@code Attendance}.
      */
     public UnattendCommand(Index targetIndex, Attendance attendance) {
         this.targetIndex = targetIndex;
@@ -63,6 +66,14 @@ public class UnattendCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UNATTEND_SUCCESS, personToAttend));
     }
 
+    /**
+     * Helps to unmark the Person's attendance and returns a new Person object.
+     *
+     * @param personToAttend Person whose attendance is unmarked.
+     * @param attendance Attendance object which carries the appropriate date to unattend.
+     * @return Person object with the date unattended.
+     * @throws CommandException If the attendance date has been already unattended.
+     */
     private static Person updateAttendanceForPerson(Person personToAttend, Attendance attendance)
             throws CommandException {
         assert personToAttend != null;
@@ -71,12 +82,8 @@ public class UnattendCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ALREADY_UNATTENDED, personToAttend.getName(), attendance));
         }
         updatedAttendances.remove(attendance);
-        return new Person(personToAttend.getName(),
-                personToAttend.getPhone(),
-                personToAttend.getEmail(),
-                personToAttend.getTelegram(),
-                personToAttend.getMatricNumber(),
-                personToAttend.getTags(),
+        return new Person(personToAttend.getName(), personToAttend.getPhone(), personToAttend.getEmail(),
+                personToAttend.getTelegram(), personToAttend.getMatricNumber(), personToAttend.getTags(),
                 updatedAttendances);
     }
 
@@ -86,7 +93,5 @@ public class UnattendCommand extends Command {
                 || (other instanceof UnattendCommand // instanceof handles nulls
                 && targetIndex.equals(((UnattendCommand) other).targetIndex)); // state check
     }
-
-    private static class AlreadyUnattendedException extends Exception {
-    }
 }
+
