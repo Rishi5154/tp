@@ -18,14 +18,23 @@ import seedu.address.model.consultation.Type;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 
-
+/**
+ * Parses input arguments and creates a new AddConsultCommand object.
+ */
 public class AddConsultParser implements Parser<AddConsultCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddConsultCommand
+     * and returns an AddConsultCommand object for execution.
+     *
+     * @param args Arguments passed over the command line.
+     * @return AddConsultCommand after parsing the arguments.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     @Override
     public AddConsultCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_ADDRESS,
                         PREFIX_TYPE);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_ADDRESS,
                 PREFIX_TYPE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConsultCommand.MESSAGE_USAGE));
@@ -44,6 +53,10 @@ public class AddConsultParser implements Parser<AddConsultCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap argumentMultimap for comparison.
+     * @param prefixes all prefixes inputted.
+     * @return Presence of all prefixes.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

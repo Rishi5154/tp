@@ -8,11 +8,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnattendCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
-
+/**
+ * Parses input arguments and creates a new UnattendCommand object
+ */
 public class UnattendCommandParser implements Parser<UnattendCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnattendCommand
      * and returns a UnattendCommand object for execution.
+     * @param args arguments inputted into the object.
+     * @return new UnattendCommand object.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnattendCommand parse(String args) throws ParseException {
