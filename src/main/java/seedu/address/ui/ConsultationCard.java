@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.consultation.Consultation;
 
+/**
+ * Represents the UI part of Consultation object in JavaFX.
+ */
 public class ConsultationCard extends UiPart<Region> {
     private static final String FXML = "ConsultationListCard.fxml";
 
@@ -19,7 +22,7 @@ public class ConsultationCard extends UiPart<Region> {
 
     public final Consultation consultation;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -36,6 +39,9 @@ public class ConsultationCard extends UiPart<Region> {
 
     /**
      * Creates a {@code ConsultationCode} with the given {@code Consultation} and index to display.
+     *
+     * @param consultation Consultation.
+     * @param displayedIndex Index of consultation to display.
      */
     public ConsultationCard(Consultation consultation, int displayedIndex) {
         super(FXML);

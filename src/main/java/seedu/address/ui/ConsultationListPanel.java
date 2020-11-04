@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 
+/**
+ * Represent UI part of the list used to hold all consultations in JavaFX.
+ */
 public class ConsultationListPanel extends UiPart<Region> {
     private static final String FXML = "ConsultationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ConsultationListPanel.class);
@@ -19,6 +22,8 @@ public class ConsultationListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code ConsultationListPanel} with the given {@code ObservableList}.
+     *
+     * @param consultList list that contains the consultations.
      */
     public ConsultationListPanel(ObservableList<Consultation> consultList) {
         super(FXML);

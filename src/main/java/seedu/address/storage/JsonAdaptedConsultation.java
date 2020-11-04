@@ -25,6 +25,12 @@ public class JsonAdaptedConsultation {
 
     /**
      * Constructs a {@code JsonAdaptedConsultation} with the given consultation details.
+     *
+     * @param name Name of consultation requestor.
+     * @param date Date of consultation.
+     * @param time Time of consultation.
+     * @param location Location of consultation.
+     * @param type Type of consultation.
      */
     @JsonCreator
     public JsonAdaptedConsultation(@JsonProperty("name") String name, @JsonProperty("date") String date,
@@ -52,6 +58,7 @@ public class JsonAdaptedConsultation {
     /**
      * Converts this Jackson-friendly adapted consultation object into the model's {@code Consultation} object.
      *
+     * @return converted Consultation.
      * @throws IllegalValueException if there were any data constraints violated in the adapted consultation.
      */
     public Consultation toModelType() throws IllegalValueException {

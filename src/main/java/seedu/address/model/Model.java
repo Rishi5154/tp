@@ -107,9 +107,9 @@ public interface Model {
      */
     void deleteConsultation(Consultation target);
     /**
-     * Replaces the given consultation {@code target} with {@code editedPerson}.
+     * Replaces the given consultation {@code target} with {@code editedConsultation}.
      * {@code target} must exist in the address book.
-     * The consultation identity of {@code editedPerson} must not be the same as
+     * The consultation identity of {@code editedConsultation} must not be the same as
      * another existing consultation in the address book.
      */
     void setConsultation(Consultation target, Consultation editedConsultation);
