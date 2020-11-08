@@ -51,6 +51,35 @@ public class ConsultationTest {
     }
 
     @Test
+    public void isPersonalConsultationOnSameTiming() {
+        // same object -> returns true
+        assertTrue(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(ALICE_PERSONAL_CONSULT));
+
+        // null -> returns false
+        assertFalse(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(null));
+
+        // different time and date -> returns false
+        Consultation editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withDay(VALID_ATTENDANCE_BOB)
+                .withTime(VALID_TIME_BOB).build();
+        assertFalse(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(editedConsult));
+
+        // different type & date -> returns false
+        editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withDay(VALID_ATTENDANCE_BOB)
+                .withType(VALID_TYPE_BOB).build();
+        assertFalse(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(editedConsult));
+
+        // same name, same day, same type (GROUP)-> returns false
+        editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withName(VALID_NAME_BOB)
+                .withDay(VALID_ATTENDANCE_BOB).build();
+        assertFalse(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(editedConsult));
+
+        // same type, same time, same day, different attributes -> returns true
+        editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withName(VALID_NAME_BOB)
+                .withLocation(VALID_LOCATION_BOB).build();
+        assertTrue(ALICE_PERSONAL_CONSULT.isPersonalConsultationOnSameTiming(editedConsult));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Consultation personalCopy = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).build();

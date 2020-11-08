@@ -82,8 +82,11 @@ public class Consultation {
         if (consultation == this) {
             return true;
         }
+        // transitive: adding personal consult to an existing group/personal consult OR
+        // adding group consult to an existing personal consult
         return consultation != null
-                && getType().type.equals(ConsultationType.PERSONAL)
+                && (consultation.getType().type.equals(ConsultationType.PERSONAL)
+                || getType().type.equals(ConsultationType.PERSONAL))
                 && consultation.getDate().equals(getDate())
                 && consultation.getTime().equals(getTime());
     }

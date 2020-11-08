@@ -3,10 +3,15 @@ package seedu.address.model.consultation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalConsults.ALICE_PERSONAL_CONSULT;
 import static seedu.address.testutil.TypicalConsults.BENSON_GROUP_CONSULT;
+import static seedu.address.testutil.TypicalConsults.GROUP_CONSULT;
+import static seedu.address.testutil.TypicalConsults.PERSONAL_CONSULT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +19,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.consultation.exceptions.ConflictingPersonalConsultationException;
 import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
 import seedu.address.testutil.ConsultationBuilder;
@@ -23,7 +29,7 @@ public class UniqueConsultationListTest {
     private final UniqueConsultationList uniqueConsultList = new UniqueConsultationList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullConsult_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueConsultList.contains(null));
     }
 
@@ -33,9 +39,24 @@ public class UniqueConsultationListTest {
     }
 
     @Test
-    public void contains_consultInList_returnsTrue() {
+    public void contains_personalConsultInList_returnsTrue() {
         uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
         assertTrue(uniqueConsultList.contains(ALICE_PERSONAL_CONSULT));
+    }
+
+    @Test
+    public void contains_groupConsultInList_returnsTrue() {
+        uniqueConsultList.add(BENSON_GROUP_CONSULT);
+        assertTrue(uniqueConsultList.contains(BENSON_GROUP_CONSULT));
+    }
+
+    @Test
+    public void contains_multipleSameGroupConsultInList_returnsTrue() {
+        uniqueConsultList.add(GROUP_CONSULT);
+        Consultation amyGroupConsult = new ConsultationBuilder(GROUP_CONSULT).withName(VALID_NAME_AMY)
+                .build();
+        uniqueConsultList.add(amyGroupConsult);
+        assertTrue(uniqueConsultList.contains(amyGroupConsult));
     }
 
     @Test
@@ -55,6 +76,37 @@ public class UniqueConsultationListTest {
     public void add_duplicateConsult_throwsDuplicateConsultationException() {
         uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
         assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList.add(ALICE_PERSONAL_CONSULT));
+    }
+
+    @Test
+    public void add_personalConsultWithExistingPersonalConsult_throwsConflictingPersonalConsultationException() {
+        uniqueConsultList.add(PERSONAL_CONSULT);
+        Consultation personalConsult = new ConsultationBuilder(PERSONAL_CONSULT).withName(VALID_NAME_BOB).build();
+        assertThrows(ConflictingPersonalConsultationException.class, () -> uniqueConsultList.add(personalConsult));
+    }
+
+    @Test
+    public void add_groupConsultWithExistingPersonalConsult_throwsConflictingPersonalConsultationException() {
+        uniqueConsultList.add(PERSONAL_CONSULT);
+        Consultation groupConsult = new ConsultationBuilder(PERSONAL_CONSULT).withName(VALID_NAME_BOB)
+                .withType(VALID_TYPE_AMY).build();
+        assertThrows(ConflictingPersonalConsultationException.class, () -> uniqueConsultList.add(groupConsult));
+    }
+
+    @Test
+    public void add_groupConsultWithSameGroupConsult_returnsTrue() {
+        uniqueConsultList.add(GROUP_CONSULT);
+        Consultation groupConsult = new ConsultationBuilder(GROUP_CONSULT).withName(VALID_NAME_AMY).build();
+        uniqueConsultList.add(groupConsult);
+        assertTrue(uniqueConsultList.contains(groupConsult));
+    }
+
+    @Test
+    public void add_personalConsultWithExistingGroupConsult_throwsConflictingPersonalConsultationException() {
+        uniqueConsultList.add(GROUP_CONSULT);
+        Consultation personalConsult = new ConsultationBuilder(GROUP_CONSULT).withName(VALID_NAME_AMY)
+                .withType(VALID_TYPE_AMY).build();
+        assertThrows(ConflictingPersonalConsultationException.class, () -> uniqueConsultList.add(personalConsult));
     }
 
     @Test
