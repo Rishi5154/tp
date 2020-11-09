@@ -34,11 +34,11 @@
          - **Add Consult command**: A command that enables for the addition of a consultation.
          - **List Consult command**: A command that allows user to list all consultations.
       
-      - **Unit tests**: Inserted JUnit tests for all active commands & updated existing tests accordingly. 
+      - **Unit tests**: Inserted JUnit tests for all active commands I added & updated existing tests accordingly. 
  
  - **Contributions to documentation**: Updated UG for `unattend`, `archive`, `add-consult` & `list-consult` operations with examples.
  
- - **Contributions to DG**: Updated DG for `list` & `find` student operations, with UML diagrams for each command.
+ - **Contributions to DG**: Updated DG for `list`, `find`, `unattend` student operations, with UML sequence diagrams for each command.
  
  - **Project management**:
 
@@ -46,8 +46,10 @@
 
  - **Contributions to team-based tasks**:
  
-    - **Review/mentoring contributions**: [\#156](), [\#94](), [\#73](), [\#19]()
+    - **Review/mentoring contributions**: [#172](), [\#156](), [\#94](), [\#73](), [\#19]()
     - **Contributions beyond project**:
         
-        -  Found crucial bugs [bug1](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/240) & enhancement[bug2](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/241)
+        -  Found crucial bugs [bug1](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/240) & enhancement [bug2](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/241)
         in a well-constructed and effort-ladden [TP](https://github.com/AY2021S1-CS2103T-W16-3/tp)
+        - Helped to test the working status of another group's project jar file [TP](https://github.com/AY2021S1-CS2103T-T17-3/tp)
+        

@@ -413,6 +413,31 @@ Shows if a student is present on a specific day.
 
 ![ShowAttendanceSequenceDiagram](images/ShowAttendanceSequenceDiagram.png)
 
+### Unmark a student's attendance
+
+This command removes the specified date from a student's attendance list. TAsker's attendance tab on the GUI will simply
+remove the specified date from the displayed list. This removal is only visible if the student has been marked to attend
+on the given date previously. Else no new changes are observed.
+
+#### Sequence of action
+
+1. `LogicManager` processes the user input "unattend 3 d/10/10/2020", for example.
+2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which in turns creates a
+   new `UnattendCommandParser` object.
+3. The `UnattendCommandParser` object calls its own `parse` method with the `" 3 d/10/10/2020"` as input.
+4. Now, the `" 3 d/10/10/2020"` argument is broken down into its individual components,
+   which is processed and used as predicate for filtering out the desired student, as well as the date to unattend.
+5. A `UnattendCommand` object is created as well.   
+6. Within the `UnattendCommand#execute` method, the `model` field calls its own `getFilteredPersonList` method to retrieve
+   the student to unattend.
+7. Next, `ListCommand` object calls its own `updateAttendanceForPerson` method to create the replacing, unattended Person object for the target Person object.
+8. After that, the `setPerson` & `updateFilteredPersonList` methods of model are invoked to update the current Person collection.
+8. Lastly, a new `CommandResult` with the relevant message is finally returned to `LogicManager`.
+
+All of these details and interactions are captured in the sequence diagram below.
+
+![UnattendStudentSequenceDiagram](images/UnattendStudentSequenceDiagram.png)
+
 ### Export attendance
 
 The `ExportAttendanceCommand` writes a new csv to `data/attendance_{CURRENT_DATE}_{CURRENT_TIME}.csv`. The csv columns headers are the names of the students and the rows are the dates. Each cell is marked with `ATTENDED` or `ABSENT` depending on whether the attendance for that student on that particular date has been marked.
