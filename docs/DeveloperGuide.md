@@ -199,7 +199,7 @@ on TAsker's GUI.
 1. `LogicManager` processes the user input "list".
 2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which returns a new
    `ListCommand` object
-3. Our new `ListCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
+3. Next, `Logicmanager` calls our new `ListCommand` object's`execute` method with the `model` field of `LogicManager` as input.
 4. Within the `ListCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
    the list to show all persons.
 5. Lastly, a new `CommandResult` with the relevant success message is finally returned to `LogicManager`.
@@ -222,9 +222,9 @@ specific student is displayed on TAsker's GUI.
 3. The `FindCommandParser` object calls its own `parse` method with the `" Roy"` as input.
 4. Now, the `" Roy"` argument is broken down into its individual strings, with whitespace removed and into an array,
    which is processed and used as predicate for filtering out the desired student.
-5. Within the `ListCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
-   the list to show all persons.
-6. Our new `ListCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
+5. `Logicmanager` calls our `FindCommand` object's `execute` method with the `model` field of `LogicManager` as input.
+6. Within the `FindCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
+   the list to retrieve the relevant person.
 7. Lastly, a new `CommandResult` with the relevant message is finally returned to `LogicManager`.
 
 All of these details and interactions are captured in the sequence diagram below.
