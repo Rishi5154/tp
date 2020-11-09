@@ -33,9 +33,8 @@ deactivate AddressBookParser
 LogicManager -> ListCommand : execute(model)
 activate ListCommand
 
-ListCommand -> Model
+ListCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
-Model -> Model : updateFilteredPersonList(predicate)
 Model --> ListCommand
 deactivate Model
 
@@ -48,10 +47,10 @@ deactivate CommandResult
 
 ListCommand --> LogicManager
 deactivate ListCommand
+
+[<--LogicManager : commandResult
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ListCommand -[hidden]-> LogicManager
 destroy ListCommand
-
-[<--LogicManager : commandResult
 deactivate LogicManager
 @enduml

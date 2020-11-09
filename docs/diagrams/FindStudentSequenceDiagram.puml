@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "command:FindCommand" as FindCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -23,33 +23,34 @@ create FindCommandParser
 AddressBookParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser -> FindCommandParser : parse(" Roy")
+AddressBookParser <-- FindCommandParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse(" Roy")
 activate FindCommandParser
 
 create FindCommand
 FindCommandParser -> FindCommand : new NameContainsKeywordsPredicate(Arrays.asList(["Roy"]))
 activate FindCommand
 
-FindCommand --> FindCommandParser
+FindCommandParser <-- FindCommand
 deactivate FindCommand
 
 'for the parse method
-deactivate FindCommandParser
 FindCommandParser --> AddressBookParser
 deactivate FindCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
+FindCommandParser -[hidden]-> LogicManager
+destroy FindCommandParser
 
-LogicManager -> FindCommand
-activate FindCommand
-
-FindCommand -> FindCommand : execute(model)
+LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
 FindCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
-Model --> FindCommand
+FindCommand <-- Model
 deactivate Model
 
 create CommandResult
@@ -59,10 +60,11 @@ activate CommandResult
 CommandResult --> FindCommand
 deactivate CommandResult
 
-deactivate FindCommand
 FindCommand --> LogicManager
 deactivate FindCommand
 
 [<--LogicManager : commandResult
+FindCommand -[hidden]-> LogicManager
+destroy FindCommand
 deactivate LogicManager
 @enduml
