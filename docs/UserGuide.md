@@ -187,6 +187,10 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend INDEX d/DATE`
 
+![Attend](images/AddAttendance.png)
+
+For: `attend 1 d/12/12/2000` 
+
 Examples:
 
 - `attend 1 d/12/12/2000` Marks the student at index 1 as present on 12 December 2000.
@@ -198,6 +202,11 @@ Marks the student as absent (default) for tutorial on a specified date.
 
 Format: `unattend INDEX d/DATE`
 
+![Unattend](images/RemoveAttendance.png)
+
+For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)
+
+Examples:
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
