@@ -444,6 +444,26 @@ The `ExportAttendanceCommand` writes a new csv to `data/attendance_{CURRENT_DATE
 
 The details of the implementation are as follows. First, we iterate through each student, calling `person.getAttendances` and adding the resulting attendances to a TreeSet called `allAttendances` that will contain all the dates in sorted order so we can form the rows of the csv. We also create a new HashSet of `Attendance` for each student, stored in an ArrayList so that the queries for the following part can be made faster. Next, we go through each date in `allAttendances`, and iterate through the ArrayList of HashSet of `Attendance`. If a date exists in that HashSet, the cell corresponding to the student and date will be marked as `ATTENDED`, and `ABSENT` otherwise.
 
+### Archive command
+
+Enables users to quickly create a backup copy of their data in TAsker, saved in `tasker_<date>_<hhmm>.json` format, for users to expedite the freshness of their data.
+
+#### Sequence of action
+
+1. `LogicManager` processes the user input "archive", for example.
+2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which in turns creates a
+   new `ArchiveCommand` object.
+3. `LogicManager` then calls the `execute` method of `ArchiveCommand`.
+4. Within the `ArchiveCommand#execute` method, a new `AddressBookStorage` object is created as  & the `model` field uses its
+   getter method to retrieve the `ReadOnlyAddressBook` object from the latter.
+   the student to unattend.
+5. Next, the `AddressBookStorage` calls its `save` method to save the recently retrieved `ReadOnlyAddressBook`.
+6. Lastly, a new `CommandResult` with the relevant message is finally returned to `LogicManager`.
+
+All of these details and interactions are captured in the sequence diagram below.
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
